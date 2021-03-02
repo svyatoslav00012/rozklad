@@ -4,5 +4,7 @@ services:
     image: rozklad-backend
     restart: always
     container_name: rozklad-backend
+    ports:
+      - '5005:5001'
     volumes:
       - /data/rozklad:/files
