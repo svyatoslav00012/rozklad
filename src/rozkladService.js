@@ -1,3 +1,4 @@
+const Config = require("./Config");
 const {fetchRozklad, getStoredRozklad, setStoredRozklad} = require("./rozkladActions");
 let cahcedRozklad = null
 
@@ -15,7 +16,7 @@ const updateRozklad = async () => {
 const getRozklad = async () => cahcedRozklad || await getStoredRozklad() || await updateRozklad()
 
 updateRozklad()
-setInterval(updateRozklad, 10 * 60 * 1000)
+setInterval(updateRozklad, Config.ROZKLAD_UPDATE_INTERVAL)
 
 module.exports = {
     getRozklad

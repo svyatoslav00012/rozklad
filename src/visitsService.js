@@ -15,7 +15,7 @@ const getVisits = () => visits
 const incVisits = () => {visits++}
 
 const saveVisits = () => fs.writeFileSync(Config.VISITS_FILE, visits+'')
-setInterval(saveVisits, 60*1000)
+setInterval(saveVisits, Config.VISITS_SAVE_INTERVAL)
 
 module.exports = {
     getVisits,
