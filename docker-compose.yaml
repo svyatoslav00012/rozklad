@@ -7,4 +7,4 @@ services:
     ports:
       - '5005:5001'
     volumes:
-      - /data/rozklad:/files
+      - /data/rozklad/:/usr/src/app/files

@@ -4,7 +4,7 @@ const Config = require("./Config");
 let visits = 0;
 
 try {
-    console.log(visits)
+    visits = fs.readFileSync(Config.VISITS_FILE)
 } catch (e) {
     console.error("fail read visits")
     console.error(e)

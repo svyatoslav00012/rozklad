@@ -13,7 +13,12 @@ const updateRozklad = async () => {
     }
 }
 
-const getRozklad = async () => cahcedRozklad || await getStoredRozklad() || await updateRozklad()
+const getStored = async () => {
+    cahcedRozklad = await getStoredRozklad()
+    return cahcedRozklad
+}
+
+const getRozklad = async () => cahcedRozklad || await getStored() || await updateRozklad()
 
 updateRozklad()
 setInterval(updateRozklad, Config.ROZKLAD_UPDATE_INTERVAL)
