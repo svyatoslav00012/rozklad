@@ -7,7 +7,7 @@ app.get('/visits', (req, res) => res.status(200).send(getVisits()+''))
 app.get('/', async (req, res) => {
     incVisits();
     const rozk = await getRozklad()
-    res.status(200).send(rozk.toString() || 'Не вдалося завантажити розклад')
+    res.status(200).send(rozk?.toString() || 'Не вдалося завантажити розклад')
 })
 
 
