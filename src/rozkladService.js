@@ -14,6 +14,7 @@ const updateRozklad = async () => {
 
 const getRozklad = async () => cahcedRozklad || await getStoredRozklad() || await updateRozklad()
 
+updateRozklad()
 setInterval(updateRozklad, 10 * 60 * 1000)
 
 module.exports = {
