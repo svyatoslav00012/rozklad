@@ -5,7 +5,7 @@ services:
     restart: always
     container_name: rozklad-backend
     environment:
-      - REDIS_HOST: redis
+      - REDIS_HOST: "redis"
     ports:
       - '5005:5001'
 
