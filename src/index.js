@@ -44,12 +44,12 @@ app.get('/:groupId', async (req, res) => {
     }
 })
 
-app.get('/api/:groupId', async (req, res) => {
+app.get('/api/v1/:groupId', async (req, res) => {
     visitsService.incVisits('api/'+req.params.groupId)
     rozkladService.getRozkladData(req.params.groupId).then(rozk => res.status(200).json(rozk))
 })
 
-app.get('/api/pretty/:groupId', async (req, res) => {
+app.get('/api/v1/pretty/:groupId', async (req, res) => {
     visitsService.incVisits('api/pretty/'+req.params.groupId)
     rozkladService.getRozkladData(req.params.groupId).then(rozk => res.status(200).send(pretty(rozk)))
 })
