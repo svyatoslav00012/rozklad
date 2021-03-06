@@ -4,7 +4,7 @@ function rozkladService({redis, config, axios, htmlParsingService}) {
 
     const fetchRozklad = async (institute = 'All', group = 'All') => {
         const start = Date.now()
-        return rq(encodeURI(config.FETCH_URL(institute, group)))
+        return await rq(encodeURI(config.FETCH_URL(institute, group)))
             .catch(err => {
                 console.log(`failed to fetch ${group}`)
                 return undefined;
@@ -21,7 +21,7 @@ function rozkladService({redis, config, axios, htmlParsingService}) {
         if (!cached) {
             const fetched = await fetchInstitute(group)
             if (fetched)
-                await redis.setAsync(`institute:${group}`, fetched, 'EX', 14 * 24 * 3600)
+                await redis.setAsync(`institute:${group}`, fetched)
             return fetched
         }
         return cached
@@ -47,7 +47,7 @@ function rozkladService({redis, config, axios, htmlParsingService}) {
     const getRozklad = async (group) => {
         const cached = await redis.getAsync(`rozklad:${group}`)
         if (!cached) {
-            const fetched = await fetchAndCacheRozklad(group)?.html
+            const fetched = (await fetchAndCacheRozklad(group))?.html
             if(!fetched){
                 return await redis.getAsync(`backup:rozklad:${group}`)
             }
@@ -59,7 +59,7 @@ function rozkladService({redis, config, axios, htmlParsingService}) {
     const getRozkladData = async (group) => {
         const cached = JSON.parse(await redis.getAsync(`rozklad-json:${group}`))
         if (!cached) {
-            const fetched = await fetchAndCacheRozklad(group)?.json
+            const fetched = (await fetchAndCacheRozklad(group))?.json
             if(!fetched){
                 return await redis.getAsync(`backup:rozklad-json:${group}`)
             }

@@ -36,8 +36,12 @@ app.get('/api/visits', async (req, res) => {
 app.get('/', (req, res) => res.redirect('/КН-409'))
 
 app.get('/:groupId', async (req, res) => {
-    visitsService.incVisits(req.params.groupId)
-    rozkladService.getRozklad(req.params.groupId).then(rozk => res.status(200).send(rozk))
+    if(req.params.groupId === 'favicon.ico') {
+        res.sendStatus(404)
+    } else {
+        visitsService.incVisits(req.params.groupId)
+        rozkladService.getRozklad(req.params.groupId).then(rozk => res.status(200).send(rozk))
+    }
 })
 
 app.get('/api/:groupId', async (req, res) => {
