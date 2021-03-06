@@ -6,5 +6,10 @@ services:
     container_name: rozklad-backend
     ports:
       - '5005:5001'
-    volumes:
-      - /data/rozklad/:/usr/src/app/files
+
+  redis:
+    image: redis
+    restart: always
+    container_name: rozklad-redis
+    ports:
+      - '6379:6379'
