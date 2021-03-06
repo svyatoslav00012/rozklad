@@ -14,7 +14,7 @@ const rozkladService = rozkladServiceConstructor({
     redis: redisClient, config: Config, htmlParsingService, axios
 })
 
-const pretty = json => `<div style="white-space: break-spaces">${JSON.stringify(json, 2, 2)}</div>`
+const pretty = json => `<div style="white-space: break-spaces">${JSON.stringify(json, 2, 4)}</div>`
 
 rozkladService.initAutoUpdating()
 
