@@ -4,6 +4,8 @@ services:
     image: rozklad-backend
     restart: always
     container_name: rozklad-backend
+    environment:
+      - REDIS_HOST: redis
     ports:
       - '5005:5001'
 
@@ -11,5 +13,3 @@ services:
     image: redis
     restart: always
     container_name: rozklad-redis
-    ports:
-      - '6379:6379'
