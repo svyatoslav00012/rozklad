@@ -14,4 +14,4 @@ services:
     restart: always
     container_name: rozklad-redis
     volumes:
-    - /data/rozklad/redis:/usr/local/var/db/redis
+    - /data/rozklad/redis:/data
