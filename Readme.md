@@ -13,4 +13,4 @@ returns: json with schedule (application/json)
 
 ### * /api/v1/pretty/:groupId
 returns: prettyfied json with schedule (text/html)
-#### Example: https://rozklad.nulp.pp.ua/api/v1/pretty//КН-409
+#### Example: https://rozklad.nulp.pp.ua/api/v1/pretty/КН-409
