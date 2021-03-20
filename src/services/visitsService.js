@@ -5,7 +5,7 @@ function visitsService({config, redisClient}){
         .reduce((acc, cur) => acc + parseInt(cur[1]), 0)
 
     const getAllVisits = async () => {
-        const v = await redisClient.hgetallAsync('visits')
+        const v = (await redisClient.hgetallAsync('visits')) || {}
         delete v['favicon.ico']
         return {
             total: count(_ => true)(v),
