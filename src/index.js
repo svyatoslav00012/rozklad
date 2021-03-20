@@ -33,7 +33,8 @@ app.get('/api/visits', async (req, res) => {
     res.status(200).json(visits)
 })
 
-app.get('/', (req, res) => res.redirect('/КН-409'))
+app.get('/', (req, res) =>
+    res.status(200).send(`<h1><a href="https://github.com/svyatoslav00012/rozklad">Documentation</a></h1>`))
 
 app.get('/:groupId', async (req, res) => {
     if(req.params.groupId === 'favicon.ico') {

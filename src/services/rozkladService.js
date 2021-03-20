@@ -1,6 +1,13 @@
 function rozkladService({redis, config, axios, htmlParsingService}) {
 
-    const rq = url => axios.get(url).then(req => req.data)
+    const rq = url => {
+        const CancelToken = axios.CancelToken;
+        const source = CancelToken.source();
+        setTimeout(() => {
+            source.cancel();
+        }, config.REQUEST_TIMEOUT);
+        return axios.get(url, {cancelToken: source.token}).then(req => req.data)
+    }
 
     const fetchRozklad = async (institute = 'All', group = 'All') => {
         const start = Date.now()
@@ -73,7 +80,7 @@ function rozkladService({redis, config, axios, htmlParsingService}) {
         const go = groupsLeft => {
             fetchAndCacheRozklad(groupsLeft[0])
             if (groupsLeft.length > 1)
-                setTimeout(() => go(groupsLeft.slice(1)), 500)
+                setTimeout(() => go(groupsLeft.slice(1)), config.NEXT_GROUP_DELAY)
         }
         go(groups)
     }
