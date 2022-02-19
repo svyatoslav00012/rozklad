@@ -1,6 +1,6 @@
 ## API розкладу занять НУЛП
 Проект переїхав на гітлаб
-https://gitlab.com/svyatoslav.shilkov.2012/rozklad
+https://gitlab.com/svyat-projects/rozklad
 
 
 ### https://rozklad.nulp.pp.ua
